@@ -28,7 +28,7 @@ A modern full-stack Blog Platform developed using React, TypeScript, Vite, and F
 1. Clone the repository
 
 ```bash
-git clone https://github.com/yourusername/blog-platform.git
+git clone https://github.com/harini97443-hub/blog-platform.git
 ```
 
 2. Install dependencies
