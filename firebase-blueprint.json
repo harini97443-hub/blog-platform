@@ -1,0 +1,111 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "Public user profile information.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "description": "Unique user identifier." },
+        "displayName": { "type": "string", "description": "Name displayed publicly." },
+        "photoURL": { "type": "string", "description": "Profile picture URL." },
+        "bio": { "type": "string", "description": "Short user biography." }
+      },
+      "required": ["uid", "displayName"]
+    },
+    "PrivateInfo": {
+      "title": "PrivateInfo",
+      "description": "Sensitive user information restricted to the owner.",
+      "type": "object",
+      "properties": {
+        "email": { "type": "string", "format": "email", "description": "User email address." },
+        "joinedAt": { "type": "string", "format": "date-time", "description": "Verification timestamp of when account was initialized." },
+        "isAdmin": { "type": "boolean", "description": "Flag indicating administrative privilege." }
+      },
+      "required": ["email", "joinedAt", "isAdmin"]
+    },
+    "BlogPost": {
+      "title": "BlogPost",
+      "description": "A published blog article.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Document ID." },
+        "title": { "type": "string", "description": "Title of the post." },
+        "content": { "type": "string", "description": "Main body text in markdown." },
+        "category": { "type": "string", "enum": ["Technology", "AI", "Education", "Lifestyle", "Travel"], "description": "Primary genre of content." },
+        "image": { "type": "string", "description": "Feature image URL." },
+        "authorId": { "type": "string", "description": "UID of author." },
+        "authorName": { "type": "string", "description": "Name of post author." },
+        "authorPhoto": { "type": "string", "description": "Avatar of post author." },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Post creation time." },
+        "updatedAt": { "type": "string", "format": "date-time", "description": "Most recent update time." },
+        "likesCount": { "type": "integer", "description": "Number of users who liked this post." },
+        "commentsCount": { "type": "integer", "description": "Number of comments on this post." }
+      },
+      "required": ["title", "content", "category", "authorId", "authorName", "createdAt", "updatedAt", "likesCount", "commentsCount"]
+    },
+    "Comment": {
+      "title": "Comment",
+      "description": "User feedback on a blog post.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique comment ID." },
+        "postId": { "type": "string", "description": "Target blog post ID." },
+        "content": { "type": "string", "description": "Body content of standard comment." },
+        "authorId": { "type": "string", "description": "Author UID." },
+        "authorName": { "type": "string", "description": "Author displayName." },
+        "authorPhoto": { "type": "string", "description": "Author avatar photoURL." },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Time of creation." },
+        "updatedAt": { "type": "string", "format": "date-time", "description": "Time of edit." }
+      },
+      "required": ["postId", "content", "authorId", "authorName", "createdAt", "updatedAt"]
+    },
+    "Like": {
+      "title": "Like",
+      "description": "Interaction tracking users liking posts.",
+      "type": "object",
+      "properties": {
+        "postId": { "type": "string", "description": "Liked blog post ID." },
+        "userId": { "type": "string", "description": "User UID who issued the like." },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Like creation time." }
+      },
+      "required": ["postId", "userId", "createdAt"]
+    },
+    "Bookmark": {
+      "title": "Bookmark",
+      "description": "Interaction tracking users saving articles.",
+      "type": "object",
+      "properties": {
+        "postId": { "type": "string", "description": "Bookmarked post ID." },
+        "userId": { "type": "string", "description": "User UID who holds the bookmark." },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Bookmark creation time." }
+      },
+      "required": ["postId", "userId", "createdAt"]
+    }
+  },
+  "firestore": {
+    "users/{userId}": {
+      "schema": "UserProfile",
+      "description": "Public profile details."
+    },
+    "users/{userId}/private/info": {
+      "schema": "PrivateInfo",
+      "description": "Owner PII details and system-generated credentials."
+    },
+    "posts/{postId}": {
+      "schema": "BlogPost",
+      "description": "Individual published articles."
+    },
+    "posts/{postId}/comments/{commentId}": {
+      "schema": "Comment",
+      "description": "User discussions linked to standard articles."
+    },
+    "posts/{postId}/likes/{userId}": {
+      "schema": "Like",
+      "description": "Likes registered to make counts deterministic."
+    },
+    "users/{userId}/bookmarks/{postId}": {
+      "schema": "Bookmark",
+      "description": "Reference catalog for individual private saves."
+    }
+  }
+}

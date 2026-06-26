@@ -1,0 +1,6 @@
+{
+  "name": "Blog Platform",
+  "description": "A modern, interactive publishing platform with categories, sub-comments, liking, bookmarking, user profiles, and a robust administrator control panel.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
