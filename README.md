@@ -1,20 +1,65 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
-</div>
+# Blog Platform
 
-# Run and deploy your AI Studio app
+A modern full-stack Blog Platform developed using React, TypeScript, Vite, and Firebase. The application allows users to create, edit, delete, and manage blog posts with secure authentication and a responsive user interface.
 
-This contains everything you need to run your app locally.
+## Features
 
-View your app in AI Studio: https://ai.studio/apps/ffa212d8-8c73-47f9-b02b-bebdff735bd3
+- User Registration & Login
+- Firebase Authentication
+- Create Blog Posts
+- Edit Existing Posts
+- Delete Posts
+- Responsive Design
+- Real-time Database Integration
+- Modern UI with React
 
-## Run Locally
+## Tech Stack
 
-**Prerequisites:**  Node.js
+- React.js
+- TypeScript
+- Vite
+- Firebase
+- HTML5
+- CSS3
+- JavaScript
 
+## Installation
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+1. Clone the repository
+
+```bash
+git clone https://github.com/yourusername/blog-platform.git
+```
+
+2. Install dependencies
+
+```bash
+npm install
+```
+
+3. Start the development server
+
+```bash
+npm run dev
+```
+
+## Project Structure
+
+```
+src/
+assets/
+firebase.json
+package.json
+vite.config.ts
+```
+
+## Future Improvements
+
+- Like & Share Posts
+- Search Blogs
+- Categories
+- User Profiles
+- Dark Mode
+
+## Author
+**Harini Kayala**
